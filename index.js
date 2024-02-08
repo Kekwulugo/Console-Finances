@@ -86,3 +86,69 @@ var finances = [
   ['Jan-2017', 138230],
   ['Feb-2017', 671099],
 ];
+
+let totalMonths = 0;
+let netProfit = 0;
+
+//Iterate through array and increment counter each time until end of array. Store this value in variable
+for (let i = 0; i < finances.length-1; i++){
+
+  totalMonths +=1;
+
+  netProfit += finances[i][1];
+};
+
+//Calculate average profit with formula provide
+let runningTotal = 0;
+for(let i = 1; i < finances.length;i++){
+  let monthlyChanges = finances[i][1]-finances[i-1][1];
+  runningTotal += monthlyChanges;
+};
+
+
+//compare the monthly changes and return the largest increase
+let greatestIncrease = 0;
+let increaseMonth = 0;
+for(let i = 1; i < finances.length; i++){
+
+  let currentIncrease = finances[i][1]- finances[i - 1][1];
+  
+  
+  if (currentIncrease > greatestIncrease) {
+      greatestIncrease = currentIncrease;
+      increaseMonth = [i][0];
+
+      
+  };
+
+};
+
+
+//compare the monthly changes and return the largest decrease
+let greatestDecrease = 0;
+let decreaseMonth =0;
+for(let i = 1; i < finances.length; i++){
+
+  let currentIncrease = finances[i][1]- finances[i - 1][1];
+  
+  if (currentIncrease < greatestDecrease) {
+      greatestDecrease = currentIncrease;
+      decreaseMonth = [i][0];
+  };
+
+};
+
+
+
+
+
+document.write("The total months in this period is " + totalMonths + "<br>");
+
+document.write("The total Net Profit is $ "+ netProfit + "<br>");
+document.write("The average change is " + runningTotal + "<br>");
+document.write("The greatest increase in profits is $" + greatestIncrease + " in " + finances[increaseMonth][0] + "<br>");
+document.write("The greatest decrease in profits is $" + greatestDecrease +" in " + finances[decreaseMonth][0] +"<br>");
+
+
+
+
